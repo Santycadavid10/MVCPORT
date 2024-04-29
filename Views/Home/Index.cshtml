@@ -1,0 +1,20 @@
+﻿
+<div id="datos"></div>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+<script>
+    const connection = new signalR.HubConnectionBuilder()
+        .withUrl("/miHub") // Reemplaza "/myHub" con la URL de tu hub de SignalR
+        .build();
+
+    connection.start().catch(error => {
+        console.error(error.message);
+    });
+
+    connection.on("SendData", function(data) {
+        // Manejar los datos recibidos, por ejemplo, actualizar la interfaz de usuario
+        document.getElementById("datos").innerText = data;
+    });
+</script>
